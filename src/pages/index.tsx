@@ -11,24 +11,31 @@ function getData(): Challenge[] {
       title: 'Remova Elementos repetidos do vetor',
       category: 'Hash Map',
       level: 'Easy',
+      hasSolution: true,
+      acceptance: 80,
     },
     {
       id: '728ed52a',
       title: 'Essa palavra é um Palindromo?',
       category: 'Strings',
       level: 'Easy',
+      hasSolution: true,
+      acceptance: 80,
     },
     {
       id: '728ed52b',
       title: 'Busca em uma lista encadeada',
       category: 'Binary Search',
       level: 'Hard',
+      acceptance: 80,
     },
     {
       id: '728ed520v',
       title: 'Tic tac toe',
       category: 'Arrays',
       level: 'Medium',
+      hasSolution: true,
+      acceptance: 70,
     },
     // ...
   ]
@@ -37,7 +44,7 @@ function getData(): Challenge[] {
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex h-full flex-col items-center justify-center ${inter.className}`}
     >
       <div>
         <DataTable columns={columns} data={getData()} />

@@ -5,12 +5,15 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
 import Link from 'next/link'
+import { StickyNote } from 'lucide-react'
 
 export type Challenge = {
   id: string
   title: string
   level: 'Hard' | 'Medium' | 'Easy'
   category: string
+  hasSolution?: boolean
+  acceptance: number
 }
 
 const colorByLevel: Record<Challenge['level'], string> = {
@@ -32,6 +35,16 @@ export const columns: ColumnDef<Challenge>[] = [
     },
   },
   {
+    accessorKey: 'hasSolution',
+    header: 'Solução',
+    cell: ({ row }) =>
+      row.original.hasSolution ? (
+        <Link href={`challenges/${row.original.id}/solution`}>
+          <StickyNote />
+        </Link>
+      ) : null,
+  },
+  {
     accessorKey: 'level',
     header: 'Dificuldade',
     cell: ({ row }) => {
@@ -47,6 +60,17 @@ export const columns: ColumnDef<Challenge>[] = [
     header: 'Categoria',
     cell: ({ row }) => {
       return <Badge>{row.original.category}</Badge>
+    },
+  },
+  {
+    accessorKey: 'acceptance',
+    header: 'Aceitação',
+    cell: ({ row }) => {
+      return (
+        <p className="leading-7 [&:not(:first-child)]:mt-6">
+          {row.getValue('acceptance')}%
+        </p>
+      )
     },
   },
 ]
